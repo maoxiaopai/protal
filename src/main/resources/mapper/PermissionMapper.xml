@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.richfit.iip.protal.dao.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.richfit.iip.protal.entity.Permission">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="permission" property="permission" />
+        <result column="url" property="url" />
+        <result column="description" property="description" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, permission, url, description
+    </sql>
+
+    <select id="findPermissionByRoleId" resultType="com.richfit.iip.protal.entity.Permission">
+		SELECT
+		  p.id,p.name,p.permission,p.url,p.description
+        FROM
+          tbl_role_permission rp
+        LEFT JOIN tbl_role r ON rp.role_id = r.id
+        LEFT JOIN tbl_permission p ON rp.permission_id = p.id
+        WHERE r.id = #{roleId};
+	</select>
+
+</mapper>

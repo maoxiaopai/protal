@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /protal
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.richfit.iip.protal
+  global-config:
+    id-type: 0
+    field-strategy: 2
+    db-column-underline: true
+    refresh-mapper: true
+    logic-delete-value: 4
+    logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  datasource:
+    url: jdbc:mysql://106.15.37.65:3306/wal?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #redis配置
+  redis:
+    database: 0
+    host: 106.15.37.65
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 5000ms
+    expireTime: 180
